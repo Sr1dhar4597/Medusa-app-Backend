@@ -1,32 +1,20 @@
-FROM node:16
-
-# Create non-root app user
-RUN useradd -m medusauser
+FROM node:18
 
 # Set working directory
 WORKDIR /usr/src/app
 
-# Install Medusa CLI globally
-RUN npm install -g @medusajs/medusa
-
-# Copy and fix permissions on package files
-COPY package*.json ./
+# Copy package files and install dependencies
+COPY package*.json tsconfig.json ./
 RUN npm install
 
-# Copy app files and fix permissions
+# Copy the rest of the source code
 COPY . .
 
-# Set proper permissions
-RUN chown -R medusauser:medusauser /usr/src/app
+# Compile TypeScript to JavaScript in .medusa/server
+RUN npm run build
 
-# Copy .env template as .env
-RUN cp .env.template .env
-
-# Switch to non-root user
-USER medusauser
-
-# Expose port
+# Expose Medusa's default port
 EXPOSE 9000
 
-# Start Medusa
-CMD ["medusa", "start"]
+# Start the Medusa backend from compiled output
+CMD ["node", ".medusa/server"]
