@@ -48,7 +48,7 @@ Visit the [Docs](https://docs.medusajs.com/learn/installation#get-started) to le
 
 Learn more about [Medusa’s architecture](https://docs.medusajs.com/learn/introduction/architecture) and [commerce modules](https://docs.medusajs.com/learn/fundamentals/modules/commerce-modules) in the Docs.
 
-## Community & Contributions
+## Community & Contributions.
 
 The community and core team are available in [GitHub Discussions](https://github.com/medusajs/medusa/discussions), where you can ask for support, discuss roadmap, and share ideas.
 
