@@ -1,30 +1,27 @@
 # Stage 1: Build the application
 FROM node:20-alpine AS builder
 
-# Set working directory
 WORKDIR /app
 
 # Install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the project
+# Copy rest of the project
 COPY . .
 
-# Build the application using npx to avoid global install errors
-RUN npx medusa build
+# Fix Medusa CLI permission and build
+RUN chmod +x ./node_modules/.bin/medusa && \
+    npx medusa build
 
-# Stage 2: Production image
+# Stage 2: Run the app
 FROM node:20-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy node_modules and build artifacts from builder
+# Copy from builder
 COPY --from=builder /app /app
 
-# Expose Medusa's default port
 EXPOSE 9000
 
-# Start the server
 CMD ["npx", "medusa", "start"]
