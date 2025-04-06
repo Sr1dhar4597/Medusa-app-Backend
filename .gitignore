@@ -1,26 +1,25 @@
-/dist
-.env
-.DS_Store
-/uploads
-/node_modules
-yarn-error.log
+#/dist
+#.env
+#.DS_Store
+#/uploads
+#/node_modules
+#yarn-error.log
 
-.idea
+#.idea
 
-coverage
+#coverage
 
-!src/**
+#!src/**
 
-./tsconfig.tsbuildinfo
-medusa-db.sql
-build
-.cache
+#./tsconfig.tsbuildinfo
+#medusa-db.sql
+#build
+#.cache
 
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-
-.medusa
+#.yarn/*
+#!.yarn/patches
+#!.yarn/plugins
+#!.yarn/releases
+#!.yarn/sdks
+#!.yarn/versions
+#.medusa
