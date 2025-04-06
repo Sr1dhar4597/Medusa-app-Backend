@@ -1,20 +1,30 @@
-FROM node:18
+# Stage 1: Build the application
+FROM node:20-alpine AS builder
 
 # Set working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json tsconfig.json ./
+# Install dependencies
+COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the source code
+# Copy the rest of the project
 COPY . .
 
-# Compile TypeScript to JavaScript in .medusa/server
-RUN npm run build
+# Build the application using npx to avoid global install errors
+RUN npx medusa build
+
+# Stage 2: Production image
+FROM node:20-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy node_modules and build artifacts from builder
+COPY --from=builder /app /app
 
 # Expose Medusa's default port
 EXPOSE 9000
 
-# Start the Medusa backend from compiled output
-CMD ["node", ".medusa/server"]
+# Start the server
+CMD ["npx", "medusa", "start"]
