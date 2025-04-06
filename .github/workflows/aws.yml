@@ -9,7 +9,7 @@ env:
   ECR_REPOSITORY: medusa
   ECS_SERVICE: medusa-service
   ECS_CLUSTER: medusa-cluster
-  ECS_TASK_DEFINITION: medusa-service
+  ECS_TASK_DEFINITION: .aws/medusa-service.json
   CONTAINER_NAME: medusa-container
 
 
