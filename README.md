@@ -36,7 +36,7 @@
 
 This starter is compatible with versions >= 2 of `@medusajs/medusa`. 
 
-###Getting Started
+###Getting Started.
 
 #Visit the [Quickstart Guide](https://docs.medusajs.com/learn/installation) to set up a server.
 
